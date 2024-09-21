@@ -11,6 +11,8 @@ let previousMouseY = 0;
 
 const novaSecao = document.getElementById('novaSecao');
 
+let introductionPlane, developmentPlane, development2Plane, climaxPlane, conclusionPlane; // Variáveis globais para os planos
+
 // Configuração do Raycaster para detectar cliques
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
@@ -154,28 +156,40 @@ function onMouseUp(event) {
 
 // Função para transição
 function transitionToNewSection(sectionId) {
-    const targetSection = document.getElementById(sectionId);
-    if (!targetSection) return; // Verifica se a seção existe
+    // Ocultar todos os planos
+    introductionPlane.visible = false;
+    developmentPlane.visible = false;
+    development2Plane.visible = false;
+    climaxPlane.visible = false;
+    conclusionPlane.visible = false;
 
-    const targetPosition = targetSection.getBoundingClientRect();
-    
-    // Ajustar a posição da câmera para a nova seção
-    const targetCameraPosition = {
-        x: (targetPosition.left + targetPosition.width / 2) / window.innerWidth * 2 - 1, 
-        y: -(targetPosition.top + targetPosition.height / 2) / window.innerHeight * 2 + 1,
-        z: camera.position.z 
-    };
+    // Mostrar a seção correta e mover a câmera suavemente
+    let targetPosition, targetLookAt;
 
-    // Transição suave usando gsap
-    gsap.to(camera.position, {
-        duration: 2,
-        x: targetCameraPosition.x,
-        y: targetCameraPosition.y,
-        z: targetCameraPosition.z,
-        onComplete: () => {
-            console.log("Transição Completa");
-        }
-    });
+    if (sectionId === "novaSecao1") {
+        introductionPlane.visible = true;
+        targetPosition = new THREE.Vector3(0, 0, 5);
+        targetLookAt = introductionPlane.position;
+    } else if (sectionId === "novaSecao2") {
+        developmentPlane.visible = true;
+        targetPosition = new THREE.Vector3(0, -4, 5);
+        targetLookAt = developmentPlane.position;
+    } else if (sectionId === "novaSecao3") {
+        development2Plane.visible = true;
+        targetPosition = new THREE.Vector3(0, -8, 5);
+        targetLookAt = development2Plane.position;
+    } else if (sectionId === "novaSecao4") {
+        climaxPlane.visible = true;
+        targetPosition = new THREE.Vector3(0, -12, 5);
+        targetLookAt = climaxPlane.position;
+    } else if (sectionId === "novaSecao5") {
+        conclusionPlane.visible = true;
+        targetPosition = new THREE.Vector3(0, -16, 5);
+        targetLookAt = conclusionPlane.position;
+    }
+
+    moveCameraSmoothly(targetPosition, targetLookAt);
+    addBackButton();
 }
 
 function createTextTexture(text) {
@@ -199,4 +213,102 @@ function createTextTexture(text) {
     texture.needsUpdate = true;
 
     return texture;
+}
+
+// Função para criar os planos
+function createPlanes() {
+    const introText = "Aqui está o texto da introdução.";
+    introductionPlane = createTextPlane(introText, { x: 0, y: 5, z: 0 });
+    introductionPlane.visible = false; // Inicialmente invisível
+
+    const devText = "Texto do Desenvolvimento Parte 1.";
+    developmentPlane = createTextPlane(devText, { x: 0, y: -2, z: 0 }); // Ajuste a posição conforme necessário
+    developmentPlane.visible = false;
+
+    const dev2Text = "Texto do Desenvolvimento Parte 2.";
+    development2Plane = createTextPlane(dev2Text, { x: 0, y: -9, z: 0 }); // Use uma variável separada
+    development2Plane.visible = false;
+
+    const climaxText = "Texto do Clímax.";
+    climaxPlane = createTextPlane(climaxText, { x: 0, y: -16, z: 0 }); 
+    climaxPlane.visible = false;
+
+    const conclusionText = "Texto da Conclusão.";
+    conclusionPlane = createTextPlane(conclusionText, { x: 0, y: -23, z: 0 }); 
+    conclusionPlane.visible = false;
+
+    // Adicionar planos à cena
+    scene.add(introductionPlane);
+    scene.add(developmentPlane);
+    scene.add(development2Plane);
+    scene.add(climaxPlane);
+    scene.add(conclusionPlane);
+}
+
+// Função para criar um plano de texto
+function createTextPlane(text, position) {
+    const geometry = new THREE.PlaneGeometry(6, 3);
+    const material = new THREE.MeshBasicMaterial({ 
+        map: createTextTexture(text), 
+        transparent: true,
+        opacity: 1 
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(position.x, position.y, position.z);
+    return mesh;
+}
+
+// Função para adicionar um botão de voltar
+function addBackButton() {
+    const backButton = document.createElement('button');
+    backButton.innerText = "Voltar";
+    backButton.style.position = 'absolute';
+    backButton.style.top = '10px';
+    backButton.style.left = '10px';
+    backButton.onclick = () => {
+        // Esconder todos os planos e mostrar os links novamente
+        introductionPlane.visible = false;
+        developmentPlane.visible = false;
+        climaxPlane.visible = false;
+        conclusionPlane.visible = false;
+        camera.position.set(0, 0, 5); // Voltar a posição inicial da câmera
+
+        // Remover botão
+        backButton.remove();
+    };
+    document.body.appendChild(backButton);
+}
+
+
+// Chame esta função para criar os planos na inicialização
+createPlanes();
+
+// Função para transição suave da câmera
+function moveCameraSmoothly(targetPosition, targetLookAt) {
+    const duration = 1; // Duração da transição em segundos
+    const startPosition = camera.position.clone();
+    const startLookAt = new THREE.Vector3().copy(camera.position).add(camera.getWorldDirection(new THREE.Vector3()));
+
+    let startTime = null;
+
+    function animateCamera(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = (timestamp - startTime) / 1000; // Converter para segundos
+
+        const t = Math.min(elapsed / duration, 1); // Interpolação (0 a 1)
+
+        // Interpolação da posição da câmera
+        camera.position.lerpVectors(startPosition, targetPosition, t);
+
+        // Interpolação do olhar da câmera
+        const lookAtPosition = new THREE.Vector3().lerpVectors(startLookAt, targetLookAt, t);
+        camera.lookAt(lookAtPosition);
+
+        // Continuar a animação enquanto não tiver terminado
+        if (t < 1) {
+            requestAnimationFrame(animateCamera);
+        }
+    }
+
+    requestAnimationFrame(animateCamera);
 }
