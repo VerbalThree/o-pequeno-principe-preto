@@ -95,7 +95,7 @@ header {
 
   .last {
     position: relative;
-    right: -360px;
+    right: -280px;
     width: 100%;
     top: 195px;
   }
@@ -110,7 +110,7 @@ header {
     padding: 15px 15px 15px 15px;
     height: 105px;
     text-align: center;
-    right: 837px;
+    right: 655px;
   }
 
   .creds h3,h5 {
@@ -120,7 +120,7 @@ header {
   .third-word {
     font-size: 75px;
     text-align: right;
-    margin-right: 140px;
+    margin-right: 57px;
     margin-bottom: 8px;
     padding-bottom: 25px;
     position: relative;
@@ -130,8 +130,8 @@ header {
   .second-word {
     font-size: 75px;
     text-align: left;
-    margin-bottom: -45px;
-    margin-left: 107px;
+    margin-bottom: -30px;
+    margin-left: 50px;
   }
 
   .first-word {
