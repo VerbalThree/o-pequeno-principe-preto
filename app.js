@@ -36,30 +36,32 @@ const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
-cube.position.set(0, 0, 2);
+cube.position.set(0, 0, 2); // ALTERADO
 
 // Posicionar a câmera
 camera.position.z = 5;
 
 // Função para criar um link
 function createLink(position, targetSectionId, text) {
-    const linkGeometry = new THREE.PlaneGeometry(6, 3);
-    const linkMaterial = new THREE.MeshBasicMaterial({ 
-        map: createTextTexture(text), 
+    const linkGeometry = new THREE.PlaneGeometry(5, 2.5);
+    const linkMaterial = new THREE.MeshBasicMaterial({
+        map: createTextTexture(text),
         transparent: true,
-        opacity: 1 
+        opacity: 1
     });
     const linkMesh = new THREE.Mesh(linkGeometry, linkMaterial);
     linkMesh.position.set(position.x, position.y, position.z);
-    linkMesh.userData = { targetSectionId }; 
+    linkMesh.userData = { targetSectionId };
     scene.add(linkMesh);
 
-    linkMesh.onClick = function() {
+    linkMesh.onClick = function () {
+        moveCubeAndStackLinks(); // Chamar a animação do cubo e links
         transitionToNewSection(targetSectionId);
     };
 
     return linkMesh;
 }
+
 
 // Criar links para diferentes seções
 const link1 = createLink({ x: 0, y: 2, z: 0 }, "novaSecao1", "Introdução");
@@ -81,11 +83,11 @@ function animate() {
     link4.lookAt(camera.position);
     link5.lookAt(camera.position);
 
-    applyWindEffect(link1);
-    applyWindEffect(link2);
-    applyWindEffect(link3);
-    applyWindEffect(link4);
-    applyWindEffect(link5);
+    //applyWindEffect(link1);
+    //applyWindEffect(link2);
+    //applyWindEffect(link3);
+    //applyWindEffect(link4);
+    //applyWindEffect(link5);
 
     renderer.render(scene, camera);
 }
@@ -155,7 +157,9 @@ function onMouseUp(event) {
 }
 
 // Função para transição
+// Função para transição
 function transitionToNewSection(sectionId) {
+
     // Ocultar todos os planos
     introductionPlane.visible = false;
     developmentPlane.visible = false;
@@ -163,39 +167,40 @@ function transitionToNewSection(sectionId) {
     climaxPlane.visible = false;
     conclusionPlane.visible = false;
 
-    // Mostrar a seção correta e mover a câmera suavemente
-    let targetPosition, targetLookAt;
+    // Mover a câmera para a direita e o cubo para a esquerda
+    let targetPosition = new THREE.Vector3(0.2, 0, 5); // Mova a câmera para a direita
+    let targetLookAt = new THREE.Vector3(0, 0, 0); // Onde a câmera deve olhar
 
-    if (sectionId === "novaSecao1") {
-        introductionPlane.visible = true;
-        targetPosition = new THREE.Vector3(0, 0, 5);
-        targetLookAt = introductionPlane.position;
-    } else if (sectionId === "novaSecao2") {
-        developmentPlane.visible = true;
-        targetPosition = new THREE.Vector3(0, -4, 5);
-        targetLookAt = developmentPlane.position;
-    } else if (sectionId === "novaSecao3") {
-        development2Plane.visible = true;
-        targetPosition = new THREE.Vector3(0, -8, 5);
-        targetLookAt = development2Plane.position;
-    } else if (sectionId === "novaSecao4") {
-        climaxPlane.visible = true;
-        targetPosition = new THREE.Vector3(0, -12, 5);
-        targetLookAt = climaxPlane.position;
-    } else if (sectionId === "novaSecao5") {
-        conclusionPlane.visible = true;
-        targetPosition = new THREE.Vector3(0, -16, 5);
-        targetLookAt = conclusionPlane.position;
+    // Mostrar a seção correta
+    switch (sectionId) {
+        case "novaSecao1":
+            introductionPlane.visible = true;
+            break;
+        case "novaSecao2":
+            developmentPlane.visible = true;
+            break;
+        case "novaSecao3":
+            development2Plane.visible = true;
+            break;
+        case "novaSecao4":
+            climaxPlane.visible = true;
+            break;
+        case "novaSecao5":
+            conclusionPlane.visible = true;
+            break;
     }
 
     moveCameraSmoothly(targetPosition, targetLookAt);
-    addBackButton();
+    moveCubeAndStackLinks(); // Mover o cubo e empilhar os links
+    stackLinks(); // Empilhar os links após definir a visibilidade da seção
+    addBackButton(); // Adicionar botão de voltar
 }
+
 
 function createTextTexture(text) {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
-    const fontSize = 24;
+    const fontSize = 18;
 
     canvas.width = 512;
     canvas.height = 256;
@@ -207,7 +212,7 @@ function createTextTexture(text) {
     context.fillStyle = 'white'; // Cor do texto
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillText(text, canvas.width / 2, canvas.height / 2 + 10); // Ajuste a posição vertical
+    context.fillText(text, canvas.width / 2, canvas.height / 2); // Ajuste a posição vertical (ALTERADO)
 
     const texture = new THREE.Texture(canvas);
     texture.needsUpdate = true;
@@ -218,23 +223,23 @@ function createTextTexture(text) {
 // Função para criar os planos
 function createPlanes() {
     const introText = "Aqui está o texto da introdução.";
-    introductionPlane = createTextPlane(introText, { x: 0, y: 5, z: 0 });
+    introductionPlane = createTextPlane(introText, { x: 4, y: 0, z: 0 });
     introductionPlane.visible = false; // Inicialmente invisível
 
     const devText = "Texto do Desenvolvimento Parte 1.";
-    developmentPlane = createTextPlane(devText, { x: 0, y: -2, z: 0 }); // Ajuste a posição conforme necessário
+    developmentPlane = createTextPlane(devText, { x: 4, y: 0, z: 0 }); // Ajuste a posição conforme necessário
     developmentPlane.visible = false;
 
     const dev2Text = "Texto do Desenvolvimento Parte 2.";
-    development2Plane = createTextPlane(dev2Text, { x: 0, y: -9, z: 0 }); // Use uma variável separada
+    development2Plane = createTextPlane(dev2Text, { x: 4, y: 0, z: 0 }); // Use uma variável separada
     development2Plane.visible = false;
 
     const climaxText = "Texto do Clímax.";
-    climaxPlane = createTextPlane(climaxText, { x: 0, y: -16, z: 0 }); 
+    climaxPlane = createTextPlane(climaxText, { x: 4, y: 0, z: 0 }); 
     climaxPlane.visible = false;
 
     const conclusionText = "Texto da Conclusão.";
-    conclusionPlane = createTextPlane(conclusionText, { x: 0, y: -23, z: 0 }); 
+    conclusionPlane = createTextPlane(conclusionText, { x: 4, y: 0, z: 0 }); 
     conclusionPlane.visible = false;
 
     // Adicionar planos à cena
@@ -247,7 +252,7 @@ function createPlanes() {
 
 // Função para criar um plano de texto
 function createTextPlane(text, position) {
-    const geometry = new THREE.PlaneGeometry(6, 3);
+    const geometry = new THREE.PlaneGeometry(8, 4);
     const material = new THREE.MeshBasicMaterial({ 
         map: createTextTexture(text), 
         transparent: true,
@@ -266,11 +271,22 @@ function addBackButton() {
     backButton.style.top = '10px';
     backButton.style.left = '10px';
     backButton.onclick = () => {
-        // Esconder todos os planos e mostrar os links novamente
+        // Voltar o cubo para a posição inicial à esquerda
+        cube.position.set(-3, 0, 2); 
+
+        // Reposicionar os links
+        link1.position.set(0, 2, 0);
+        link2.position.set(4, 0.2, 0);
+        link3.position.set(3, -2, 0);
+        link4.position.set(-2, -2, 0);
+        link5.position.set(-4, 0.2, 0);
+
+        // Ocultar todos os planos
         introductionPlane.visible = false;
         developmentPlane.visible = false;
         climaxPlane.visible = false;
         conclusionPlane.visible = false;
+
         camera.position.set(0, 0, 5); // Voltar a posição inicial da câmera
 
         // Remover botão
@@ -280,12 +296,13 @@ function addBackButton() {
 }
 
 
+
 // Chame esta função para criar os planos na inicialização
 createPlanes();
 
 // Função para transição suave da câmera
 function moveCameraSmoothly(targetPosition, targetLookAt) {
-    const duration = 1; // Duração da transição em segundos
+    const duration = 2; // Duração da transição em segundos
     const startPosition = camera.position.clone();
     const startLookAt = new THREE.Vector3().copy(camera.position).add(camera.getWorldDirection(new THREE.Vector3()));
 
@@ -311,4 +328,50 @@ function moveCameraSmoothly(targetPosition, targetLookAt) {
     }
 
     requestAnimationFrame(animateCamera);
+}
+
+function moveCubeAndStackLinks() {
+    const targetCubePosition = new THREE.Vector3(-3, 0, 2); // Mover o cubo para a esquerda
+    const duration = 0.5; // Duração da animação em segundos
+    const startPosition = cube.position.clone();
+
+    let startTime = null;
+
+    function animateCube(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = (timestamp - startTime) / 1000; // Converter para segundos
+
+        const t = Math.min(elapsed / duration, 1); // Interpolação (0 a 1)
+
+        // Mover o cubo suavemente para a posição final
+        cube.position.lerpVectors(startPosition, targetCubePosition, t);
+
+        // Continuar a animação enquanto não tiver terminado
+        if (t < 1) {
+            requestAnimationFrame(animateCube);
+        } else {
+            stackLinks(); // Empilhar os links após o cubo terminar de se mover
+        }
+    }
+
+    requestAnimationFrame(animateCube);
+}
+
+function stackLinks() {
+    // Reposicionar os links em uma pilha vertical ao lado do cubo
+    const linkSpacing = 0.25; // Espaçamento entre os links
+    const baseX = cube.position.x + 1; // Posição base do empilhamento ao lado do cubo
+    const baseY = 1; // Posição inicial de empilhamento no eixo Y
+
+    link1.visible = true;
+    link2.visible = true;
+    link3.visible = true;
+    link4.visible = true;
+    link5.visible = true;
+
+    link1.position.set(baseX, baseY + 2 * linkSpacing, 0);
+    link2.position.set(baseX, baseY + 1 * linkSpacing, 0);
+    link3.position.set(baseX, baseY, 0);
+    link4.position.set(baseX, baseY - 1 * linkSpacing, 0);
+    link5.position.set(baseX, baseY - 2 * linkSpacing, 0);
 }
