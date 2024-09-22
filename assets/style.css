@@ -152,16 +152,22 @@ header {
 .first-word {
   font-size: 65px;
   text-align: center;
-  margin-bottom: -45px;
+  margin-bottom: -40px;
 }
 .second-word {
   font-size: 65px;
   text-align: left;
   margin-bottom: -45px;
+  position: relative;
+  left: -35px;
+  top: -10px;
 }
 .third-word {
   font-size: 65px;
   text-align: right;
+  position: relative;
+  left: 40px;
+  top: -15px;
 }
 header {
   background: orange;
@@ -183,10 +189,10 @@ blockquote {
 }
 blockquote p {
   position: relative; /* */
-  bottom: 310px;     /* */
+  bottom: 400px;     /* */
   color: white;
   background-color: #6495ED;
-  font-size: 40px;
+  font-size: 35px;
   display: inline;
   line-height: 1;
   border: 1px solid transparent;
@@ -195,9 +201,12 @@ blockquote p {
 }
 .last {
   position: relative;
-  right: -182px;
-  top: 220px;
+  right: -165px;
+  top: 315px;
 }
+.last p {
+    font-size: 30px;
+  }
 .creds {
   position: relative;
   background-color: white;
@@ -208,16 +217,18 @@ blockquote p {
   padding: 15px 15px 15px 15px;
   height: 85px;
   text-align: center;
-  right: 360px;
+  right: 290px;
 }
 .creds h3,h5 {
   color: black;
 }
 .mid {
   width: 1348px;
+  position: relative;
+  top: 85px;
 }
 .mid p {
-  font-size: 25px;
+  font-size: 15px;
 }
 }  
 
