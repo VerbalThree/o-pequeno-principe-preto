@@ -61,11 +61,44 @@ scene.background = spaceTexture;
 
 // Avatar
 
-const jeffTexture = new THREE.TextureLoader().load('assets/jeff.png');
+// Criação da forma de estrela
+const starShape = new THREE.Shape();
+const outerRadius = 1.5; // Raio externo da estrela (ajuste conforme necessário)
+const innerRadius = 0.75; // Raio interno da estrela (ajuste conforme necessário)
+const spikes = 5; // Número de pontas da estrela
 
-const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
+// Desenha a estrela usando linhas conectando as pontas e os vértices internos
+for (let i = 0; i < spikes * 2; i++) {
+  const radius = i % 2 === 0 ? outerRadius : innerRadius;
+  const angle = (i / (spikes * 2)) * Math.PI * 2;
+  const x = Math.cos(angle) * radius;
+  const y = Math.sin(angle) * radius;
 
-scene.add(jeff);
+  if (i === 0) {
+    starShape.moveTo(x, y);
+  } else {
+    starShape.lineTo(x, y);
+  }
+}
+starShape.closePath();
+
+// Criação da geometria da estrela a partir da forma desenhada
+const starGeometry = new THREE.ShapeGeometry(starShape);
+
+// Criação do material amarelo para a estrela
+const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+
+// Criação da malha (mesh) da estrela usando a geometria e o material
+const star = new THREE.Mesh(starGeometry, starMaterial);
+
+// Adiciona a estrela à cena
+scene.add(star);
+
+//const jeffTexture = new THREE.TextureLoader().load('assets/jeff.png');
+
+//const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
+
+//scene.add(jeff);
 
 // Moon
 
@@ -85,8 +118,8 @@ scene.add(moon);
 moon.position.z = 30;
 moon.position.setX(-10);
 
-jeff.position.z = -5;
-jeff.position.x = 2;
+star.position.z = -5;
+star.position.x = 2;
 
 // Scroll Animation
 
@@ -96,8 +129,8 @@ function moveCamera() {
   moon.rotation.y += 0.075;
   moon.rotation.z += 0.05;
 
-  jeff.rotation.y += 0.01;
-  jeff.rotation.z += 0.01;
+  //star.rotation.y += 0.01;
+  //star.rotation.z += 0.01;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
