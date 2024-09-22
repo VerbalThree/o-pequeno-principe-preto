@@ -1,4 +1,3 @@
-
 // Setup
 
 const scene = new THREE.Scene();
@@ -125,3 +124,36 @@ function animate() {
 }
 
 animate();
+
+// Scroll Reveal 
+ScrollReveal().reveal('header', { 
+  duration: 3000, 
+  origin: 'top', 
+  distance: '50px',
+  reset: true,
+  delay: 250
+});
+
+ScrollReveal().reveal('blockquote', { 
+  duration: 1000, 
+  origin: 'bottom', 
+  distance: '50px',
+  reset: true,
+  delay: 125
+});
+
+ScrollReveal().reveal('section', { 
+  duration: 1000, 
+  origin: 'bottom', 
+  distance: '50px',
+  reset: true,
+  delay: 125
+});
+
+ScrollReveal().reveal('.creds', { 
+  duration: 1000, 
+  origin: 'bottom', 
+  distance: '50px',
+  reset: true,
+  delay: 125
+});
