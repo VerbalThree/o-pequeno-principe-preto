@@ -42,19 +42,19 @@ canvas {
   left: 0;
 }
 
-
-
-  header {
-    background: orange;
-    color: #007BFF;
-    grid-column: 2 / span 5;
-    font-size: 2.5rem;
-    padding: 2rem;
-    margin-bottom: var(--spacing);
-    border: 1px solid transparent;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+header {
+  background: orange;
+  color: #007BFF;
+  grid-column: 2 / span 5;
+  font-size: 2.5rem;
+  padding: 2rem;
+  margin-bottom: var(--spacing);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 92%;
+  height: 320px;
+}
 
   section {
     grid-column: 2 / 8;
@@ -95,10 +95,60 @@ canvas {
 
   .last {
     position: relative;
-    right: -565px;
+    right: -360px;
+    width: 100%;
+    top: 195px;
   }
 
-@media only screen and (min-width: 1024px){
+  .creds {
+    position: relative;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 315px;
+    padding: 15px 15px 15px 15px;
+    height: 105px;
+    text-align: center;
+    right: 837px;
+  }
+
+  .creds h3,h5 {
+    color: black;
+  }
+
+  .third-word {
+    font-size: 75px;
+    text-align: right;
+    margin-right: 140px;
+    margin-bottom: 8px;
+    padding-bottom: ;
+    position: relative;
+    bottom: 34px;
+  }
+
+  .second-word {
+    font-size: 75px;
+    text-align: left;
+    margin-bottom: -45px;
+    margin-left: 107px;
+  }
+
+  .first-word {
+    font-size: 75px;
+    text-align: center;
+    margin-bottom: -60px;
+  }
+
+  .mid {
+    width: 1320px;
+  }
+
+  .mid p {
+    font-size: 33px;
+  }
+
+@media only screen and (max-width: 1024px){
 .first-word {
   font-size: 65px;
   text-align: center;
@@ -123,6 +173,7 @@ header {
   border: 1px solid transparent;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 465px;
 }
 blockquote {
   margin: 0;
@@ -144,21 +195,20 @@ blockquote p {
 }
 .last {
   position: relative;
-  right: -185px;
+  right: -182px;
   top: 220px;
 }
 .creds {
   position: relative;
   background-color: white;
-  
   border: 1px solid transparent;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 200px;
+  width: 305px;
   padding: 15px 15px 15px 15px;
-  height: 90px;
+  height: 85px;
   text-align: center;
-  right: 440px;
+  right: 360px;
 }
 .creds h3,h5 {
   color: black;
@@ -170,3 +220,113 @@ blockquote p {
   font-size: 25px;
 }
 }  
+
+@media only screen and (max-width: 1000px){
+#sorry {
+  z-index: 1001;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#sorry h1{
+  font-size: 3em;
+  margin: 0;
+  color: white;
+}
+#sorry p {
+  font-size: 1.5em;
+  margin-top: 10px;
+  color: white;
+}
+}
+
+@media only screen and (max-width: 720px){
+  #sorry {
+    z-index: 1001;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #sorry h1{
+    font-size: 15px;
+    margin: 0;
+    color: white;
+  }
+  #sorry p {
+    font-size: 15px;
+    margin-top: 10px;
+    color: white;
+  }
+  }
+
+  @media only screen and (max-width: 500px){
+    #sorry {
+      z-index: 1001;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #sorry h1 {
+      font-size: 15px;
+      margin: 0;
+      color: white;
+    }
+    #sorry p {
+      font-size: 15px;
+      margin-top: 10px;
+      color: white;
+    }
+    }
+
+    @media only screen and (max-width: 320px){
+      #sorry {
+        z-index: 1001;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #sorry h1 {
+        font-size: 5.6px;
+        margin: 0;
+        color: white;
+        overflow-wrap: break-word;
+        position: relative;
+        left: -206px;
+      }
+      #sorry p {
+        font-size: 15px;
+        margin-top: 10px;
+        color: white;
+        position: relative;
+        left: -208px;
+      }
+    }
+      }

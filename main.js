@@ -135,11 +135,11 @@ ScrollReveal().reveal('header', {
 });
 
 ScrollReveal().reveal('blockquote', { 
-  duration: 1000, 
+  duration: 3500, 
   origin: 'bottom', 
   distance: '50px',
   reset: true,
-  delay: 125
+  delay: 250
 });
 
 ScrollReveal().reveal('section', { 
@@ -151,9 +151,27 @@ ScrollReveal().reveal('section', {
 });
 
 ScrollReveal().reveal('.creds', { 
-  duration: 1000, 
+  duration: 3700, 
   origin: 'bottom', 
   distance: '50px',
   reset: true,
-  delay: 125
+  delay: 600
+});
+
+// Função para desabilitar o Scroll
+function disableScroll(){
+  document.body.style.overflow = 'hidden';
+}
+
+// Função para habilitar o Scroll
+function enableScroll(){
+  document.body.style.overflow = 'auto';
+}
+
+// Desabilitar o Scroll caso #sorry seja visível
+window.addEventListener('DOMContentLoaded', (event) => {
+  const sorryElement = document.getElementById('sorry');
+  if(window.getComputedStyle(sorryElement).display === 'flex'){
+    disableScroll();
+  }
 });
