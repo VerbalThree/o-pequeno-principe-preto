@@ -1,4 +1,3 @@
-/* Geral */
 body {
     margin: 0;
     font-family: 'Poetsen One', sans-serif;
@@ -10,7 +9,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Topnav responsiva */
+/* TOP NAVIGATION */
 .topnav {
     background: linear-gradient(135deg, #4a90e2, #e94e77);
     position: fixed;
@@ -18,6 +17,8 @@ html {
     width: 100%;
     transition: top 0.3s;
     z-index: 1001;
+    padding: 10px 20px;
+    box-sizing: border-box;
 }
 
 .topnav a {
@@ -25,7 +26,7 @@ html {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 10px 12px;
     text-decoration: none;
     font-size: 17px;
     transition: 0.2s;
@@ -36,7 +37,6 @@ html {
     color: black;
 }
 
-/* Ícone do menu para dispositivos móveis */
 .topnav .icon {
     display: none;
 }
@@ -51,7 +51,6 @@ html {
     }
 }
 
-/* Menu responsivo */
 @media screen and (max-width: 600px) {
     .topnav.responsive {
         position: relative;
@@ -68,43 +67,42 @@ html {
     }
 }
 
-/* Seções Responsivas */
+/* ABOUT SECTION */
 .about {
     border: 1px solid black;
     border-radius: 15px;
     padding: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: orange;
     transition: transform 0.3s;
     position: relative;
-    left: 10%;
-    width: 80%; /* Faz a largura ser flexível */
-    max-width: 500px; /* Limita a largura máxima */
     margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
 }
 
 .about:hover {
     transform: scale(1.05);
 }
 
+/* SINOPSE */
 .sinopse {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 50px;
-    flex-direction: column;
+    top: 255px;
+    transition: transform 0.3s;
 }
 
 #rodrigo {
-    width: 80%;
-    max-width: 500px; /* Limita a largura máxima */
+    width: 100%;
+    max-width: 500px;
     height: auto;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px;
     border: 1px solid transparent;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s;
 }
 
@@ -112,36 +110,25 @@ html {
     transform: scale(1.05);
 }
 
-/* Responsividade das seções */
-section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 400px;
-    padding: 100px 10vw; /* Padding ajustável para diferentes tamanhos */
-}
-
-/* Ajuste da secao2 */
-#secao2, #secao3 {
-    display: flex;
-    flex-direction: column;
-    background-color: #007BFF;
+/* SECTIONS */
+#secao1, #secao2, #secao3 {
     padding: 20px;
     box-sizing: border-box;
-    height: auto; /* Deixa o conteúdo ajustar a altura */
+    background-color: #c68000;
+    width: 100%;
+    min-height: 400px;
 }
 
 .parte-1, .parte-2, .parte-3, .parte-4, .parte-5, .parte-6 {
     border: 1px solid transparent;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 80%; /* Ajusta a largura para caber em telas menores */
-    max-width: 500px; /* Limita a largura máxima */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
     height: auto;
     padding: 15px;
     text-align: center;
-    margin: 15px auto;
+    margin: 20px auto;
     background-color: white;
     transition: transform 0.3s;
 }
@@ -150,23 +137,112 @@ section {
     transform: scale(1.05);
 }
 
-/* Ajustes gerais para dispositivos móveis */
-@media screen and (max-width: 600px) {
-    .topnav a {
-        font-size: 15px;
-    }
+/* PAINEL DE CITAÇÕES */
+#citações {
+    background-color: #1b3653;
+    padding: 40px;
+    text-align: center;
+}
 
-    .about, #rodrigo, .parte-1, .parte-2, .parte-3, .parte-4, .parte-5, .parte-6 {
-        width: 90%;
-        max-width: 100%;
-    }
+.citação, .citação-right, .citação-down {
+    border: 1px solid #007BFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    background-color: white;
+    color: black;
+    width: 100%;
+    max-width: 500px;
+}
 
-    button {
-        font-size: 20px;
-        padding: 10px;
-        width: 90%;
-        right: 0;
-        bottom: 0;
-        margin: 10px auto;
-    }
+.citação:hover, .citação-right:hover, .citação-down:hover {
+    transform: scale(1.05);
+}
+
+.citação p {
+    color: black;
+    font-style: italic;
+}
+
+/* CREDITS */
+.creds {
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    text-align: center;
+    margin: 20px auto;
+    transition: transform 0.3s;
+}
+
+.creds:hover {
+    transform: scale(1.05);
+}
+
+.creds h3, .creds h5 {
+    color: black;
+}
+
+/* BUTTONS */
+button {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 300px;
+    position: relative;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+
+button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
