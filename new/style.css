@@ -7,158 +7,312 @@ body {
 
 html {
     scroll-behavior: smooth;
-}
+  }
 
-/* TOP NAVIGATION */
-.topnav {
+ /* Add a black background color to the top navigation */
+ .topnav {
     background: linear-gradient(135deg, #4a90e2, #e94e77);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    transition: top 0.3s;
-    z-index: 1001;
-    padding: 10px 20px;
-    box-sizing: border-box;
-}
+    position: fixed; /* Make it stick/fixed */
+  top: 0; /* Stay on top */
+  width: 100%; /* Full width */
+  transition: top 0.3s; /* Transition effect when sliding down (and up) */
+z-index: 1001;
+  }
 
-.topnav a {
+  /* Style the links inside the navigation bar */
+  .topnav a {
     float: left;
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 10px 12px;
+    padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
     transition: 0.2s;
-}
+  }
 
-.topnav a:hover {
+  /* Change the color of links on hover */
+  .topnav a:hover {
     background-color: #ddd;
     color: black;
-}
+  }
 
-.topnav .icon {
+  /* Hide the link that should open and close the topnav on small screens */
+  .topnav .icon {
     display: none;
-}
+  } 
 
-@media screen and (max-width: 600px) {
-    .topnav a:not(:first-child) {
-        display: none;
-    }
+ /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+ @media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
-        float: right;
-        display: block;
+      float: right;
+      display: block;
     }
-}
+  }
 
-@media screen and (max-width: 600px) {
-    .topnav.responsive {
-        position: relative;
-    }
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+  @media screen and (max-width: 600px) {
+    .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {
-        position: absolute;
-        right: 0;
-        top: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
     }
     .topnav.responsive a {
-        float: none;
-        display: block;
-        text-align: left;
+      float: none;
+      display: block;
+      text-align: left;
     }
-}
+  } 
 
-/* ABOUT SECTION */
-.about {
+  .about {
     border: 1px solid black;
     border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px 15px 15px 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: orange;
     transition: transform 0.3s;
     position: relative;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
+  left: 260px;
 }
 
-.about:hover {
+.about:hover{
     transform: scale(1.05);
 }
 
-/* SINOPSE */
-.sinopse {
+  .sinopse {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 255px;
-    transition: transform 0.3s;
-}
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 255px;
+  transition: transform 0.3s;
+  }
 
-#rodrigo {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    margin: 20px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-}
+  #rodrigo {
+    width: 500px;
+    height: 500px;
+    margin-left: 50px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s;
+  }
 
-#rodrigo:hover {
+  #rodrigo:hover{
     transform: scale(1.05);
-}
+  }
 
-/* SECTIONS */
-#secao1, #secao2, #secao3 {
+  #secao1 {
+    background-color: #e19200;
+    width: 100%;
+    height: 1207px;
     padding: 20px;
     box-sizing: border-box;
     background-color: #c68000;
-    width: 100%;
+  }
+
+  section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     min-height: 400px;
+    padding: 100px 20vw;
 }
 
-.parte-1, .parte-2, .parte-3, .parte-4, .parte-5, .parte-6 {
+/* SEÇÂO 2 */
+#secao2{
+    position: relative;
+  display: flex;
+  flex-direction: inherit;
+  background-color: #007BFF;
+  box-sizing: border-box; 
+  height: 1209px; 
+}
+.parte-1{
     border: 1px solid transparent;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    padding: 15px;
-    text-align: center;
-    margin: 20px auto;
-    background-color: white;
-    transition: transform 0.3s;
+  border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 500px;
+  height: 280px;
+  padding: 15px 15px 15px 15px;
+  text-align: center;
+  margin-right: 50px;
+  position: relative;
+  bottom: 50px;
+  background-color: white;
+  transition: transform 0.3s;
 }
 
-.parte-1:hover, .parte-2:hover, .parte-3:hover, .parte-4:hover, .parte-5:hover, .parte-6:hover {
+.parte-2{
+    border: 1px solid transparent;
+  border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 500px;
+  height: 280px;
+  padding: 15px 15px 15px 15px;
+  text-align: center;
+  margin-right: 50px;
+  position: relative;
+  bottom: 50px;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.parte-3{
+    border: 1px solid transparent;
+  border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 500px;
+  height: 280px;
+  padding: 15px 15px 15px 15px;
+  text-align: center;
+  margin-right: 50px;
+ position: relative;
+  bottom: 50px;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.parte-1:hover{
+    transform: scale(1.05);
+}
+
+.parte-2:hover{
+    transform: scale(1.05);
+}
+
+.parte-3:hover{
+    transform: scale(1.05);
+}
+
+/* SEÇÂO 3 */
+#secao3{
+    position: relative;
+  display: flex;
+  flex-direction: inherit;
+  background-color: #004d9f;
+  box-sizing: border-box; 
+  height: 1209px; 
+}
+
+.parte-4{
+    border: 1px solid transparent;
+  border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 500px;
+  height: 280px;
+  padding: 15px 15px 15px 15px;
+  text-align: center;
+  margin-right: 50px;
+  position: relative;
+  bottom: 50px;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.parte-5{
+    border: 1px solid transparent;
+  border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 500px;
+  height: 280px;
+  padding: 15px 15px 15px 15px;
+  text-align: center;
+  margin-right: 50px;
+  position: relative;
+  bottom: 50px;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.parte-6{
+    border: 1px solid transparent;
+  border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 500px;
+  height: 280px;
+  padding: 15px 15px 15px 15px;
+  text-align: center;
+  margin-right: 50px;
+ position: relative;
+  bottom: 50px;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.parte-4:hover{
+    transform: scale(1.05);
+}
+
+.parte-5:hover{
+    transform: scale(1.05);
+}
+
+.parte-6:hover{
     transform: scale(1.05);
 }
 
 /* PAINEL DE CITAÇÕES */
 #citações {
-    background-color: #1b3653;
+    background-color: #1b3653;;
     padding: 40px;
     text-align: center;
 }
 
-.citação, .citação-right, .citação-down {
+.citação {
     border: 1px solid #007BFF;
     border-radius: 10px;
     padding: 20px;
-    margin: 15px auto;
+    margin: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s;
-    background-color: white;
-    color: black;
-    width: 100%;
-    max-width: 500px;
+    position: relative;
+  left: -275px;
+  background-color: white;
+  bottom: -35px;
 }
 
-.citação:hover, .citação-right:hover, .citação-down:hover {
-    transform: scale(1.05);
+.citação-right {
+    border: 1px solid #007BFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    position: relative;
+    left: 350px;
+    color: black;
+    bottom: 289px;
+    background-color: white;
+
+  }
+
+  .citação-down {
+    border: 1px solid #007BFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    color: black;
+    position: relative;
+    background-color: white;
+    bottom: -30px;
+  }
+
+.citação:hover {
+    transform: scale(1.05); /* Efeito de destaque ao passar o mouse */
+}
+
+.citação-right:hover {
+    transform: scale(1.05); /* Efeito de destaque ao passar o mouse */
+}
+
+.citação-down:hover {
+    transform: scale(1.05); /* Efeito de destaque ao passar o mouse */
 }
 
 .citação p {
@@ -166,48 +320,68 @@ html {
     font-style: italic;
 }
 
-/* CREDITS */
+/* CRÈDITOS */
 .creds {
+    position: relative;
     background-color: white;
     border: 1px solid transparent;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 350px;
-    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 315px;
+    padding: 15px 15px 15px 15px;
+    height: 105px;
     text-align: center;
-    margin: 20px auto;
+    margin-bottom: 15px;
     transition: transform 0.3s;
-}
+  }
+
+  .creds h3,h5 {
+    color: black;
+  }
 
 .creds:hover {
     transform: scale(1.05);
 }
 
-.creds h3, .creds h5 {
-    color: black;
-}
+/* Scrollbar */
+ /* width */
+ ::-webkit-scrollbar {
+    width: 10px;
+  }
 
-/* BUTTONS */
-button {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } 
+
+button{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: transform 0.3s;
     border: 1px solid transparent;
     border-radius: 10px;
-    padding: 10px;
-    font-size: 20px;
+    padding: 10px 10px 10px 10px;
+    font-size: 30px;
     background-color: #007BFF;
     color: white;
-    cursor: pointer;
-    display: block;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 300px;
     position: relative;
-}
-
-button:hover {
-    transform: scale(1.05);
+  bottom: -170px;
+  right: 158px;
+  /* RIPPLE */
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 button:after {
@@ -220,29 +394,17 @@ button:after {
     margin-left: -20px!important;
     margin-top: -120%;
     opacity: 0;
-    transition: all 0.8s;
-}
+    transition: all 0.8s
+  }
 
 button:active:after {
     padding: 0;
     margin: 0;
     opacity: 1;
-    transition: 0s;
-}
+    transition: 0s
+  }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
+button:hover{
+    transform: scale(1.05);
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
+} 
