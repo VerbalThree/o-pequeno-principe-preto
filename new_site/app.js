@@ -8,6 +8,16 @@ window.onload = function () {
     const closeModal = document.querySelector(".close");
     const mainContent = document.querySelector(".main-content");
 
+    const imageDescriptions = [
+        "Essa daqui é a imagem 1",
+        "Essa daqui é a imagem 2",
+        "Essa daqui é a imagem 3",
+        "Essa daqui é a imagem 4",
+        "Essa daqui é a imagem 5",
+        "Essa daqui é a imagem 6",
+        "Essa daqui é a imagem 7",
+    ];
+
     document.addEventListener("mousemove", function (event) {
         const x = event.clientX;
         const y = event.clientY;
@@ -81,7 +91,7 @@ window.onload = function () {
         
             const imgInsideItem = item.querySelector("img");
             modalImage.src = imgInsideItem.src;
-            modalDescription.textContent = `Descrição da Imagem ${(index + 1)}`; // Alterar para a descrição desejada
+            modalDescription.textContent = imageDescriptions[index]; // Descrição de cada imagem
             modal.style.display = "flex";
             mainContent.classList.add("blur-background"); // Adiciona o blur
         });
