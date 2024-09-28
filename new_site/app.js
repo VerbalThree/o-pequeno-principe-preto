@@ -92,22 +92,31 @@ window.onload = function () {
             const imgInsideItem = item.querySelector("img");
             modalImage.src = imgInsideItem.src;
             modalDescription.textContent = imageDescriptions[index]; // Descrição de cada imagem
-            modal.style.display = "flex";
+            modal.classList.add("show"); // Adiciona a classe para mostrar
             mainContent.classList.add("blur-background"); // Adiciona o blur
+
+            
         });
     });
 
     // Evento para fechar o modal
     closeModal.addEventListener("click", function() {
-        modal.style.display = "none";
+        modal.classList.remove("show"); // Remove a classe para ocultar
         mainContent.classList.remove("blur-background"); // Remove o blur
+
+        setTimeout(() => {
+            modal.style.display = 'none';
+        },300);  
+
     });
 
     // Fecha o modal ao clicar fora do conteúdo
     window.addEventListener("click", function(event) {
         if(event.target == modal){
-            modal.style.display = "none";
+            modal.classList.remove("show"); // Remove a classe para ocultar
             mainContent.classList.remove("blur-background"); // Remove o blur
+
+        
         }
     });
 
@@ -171,5 +180,3 @@ function animate() {
 }
 
 animate();
-
-// Pop-up

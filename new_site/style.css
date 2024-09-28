@@ -92,7 +92,7 @@ img {
     position: fixed;
     width: 20px;
     height: 20px;
-    background-color: rgba(255, 0, 0, 0.8);
+    background-color: rgba(0, 187, 255, 0.8);
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
@@ -112,6 +112,13 @@ img {
     background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
 }
 
 .modal-content {
