@@ -18,7 +18,7 @@ html {
   transition: top 0.3s; /* Transition effect when sliding down (and up) */
 z-index: 1001;
   }
-  
+
   /* Style the links inside the navigation bar */
   .topnav a {
     float: left;
@@ -30,7 +30,7 @@ z-index: 1001;
     font-size: 17px;
     transition: 0.2s;
   }
-  
+
   /* Change the color of links on hover */
   .topnav a:hover {
     background-color: #ddd;
@@ -50,7 +50,7 @@ z-index: 1001;
       display: block;
     }
   }
-  
+
   /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
   @media screen and (max-width: 600px) {
     .topnav.responsive {position: relative;}
@@ -80,7 +80,7 @@ z-index: 1001;
 .about:hover{
     transform: scale(1.05);
 }
- 
+
   .sinopse {
     display: flex;
   justify-content: center;
@@ -289,7 +289,7 @@ z-index: 1001;
     background-color: white;
 
   }
-  
+
   .citação-down {
     border: 1px solid #007BFF;
     border-radius: 10px;
@@ -348,17 +348,17 @@ z-index: 1001;
  ::-webkit-scrollbar {
     width: 10px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
-  
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
@@ -407,4 +407,4 @@ button:active:after {
 button:hover{
     transform: scale(1.05);
 
-}
+} 
