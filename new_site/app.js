@@ -9,13 +9,13 @@ window.onload = function () {
     const mainContent = document.querySelector(".main-content");
 
     const imageDescriptions = [
-        "Essa daqui é a imagem 1",
-        "Essa daqui é a imagem 2",
-        "Essa daqui é a imagem 3",
-        "Essa daqui é a imagem 4",
-        "Essa daqui é a imagem 5",
-        "Essa daqui é a imagem 6",
-        "Essa daqui é a imagem 7",
+        "Parte 1: A Chegada do Pequeno Príncipe Preto: O Pequeno Príncipe Preto chega à Terra de um asteroide distante, onde vive em harmonia com a natureza. Ao pousar, ele é imediatamente atraído pela beleza do planeta e pelas cores vibrantes ao seu redor. A curiosidade o impulsiona a explorar este novo mundo, onde encontra formas de vida diferentes das que conhecia.",
+        "Parte 2: O Encontro com a Rosa: Durante suas andanças, o Pequeno Príncipe Preto encontra uma rosa desabrochando em um jardim. Essa rosa, com suas pétalas delicadas e fragrância envolvente, atrai a atenção do príncipe. Ele se lembra de sua rosa no asteroide e sente um profundo desejo de proteger e cuidar dela. No entanto, a rosa é orgulhosa e teimosa, o que provoca conflitos entre eles.",
+        "Parte 3: A Amizade com o Aviador: O Pequeno Príncipe Preto conhece um aviador perdido em um deserto. O aviador, ao avistar o príncipe, se sente imediatamente atraído por sua essência inocente e sábia. Eles iniciam uma conversa profunda sobre suas vidas, sonhos e o que realmente importa. O príncipe compartilha suas experiências e lições aprendidas em sua jornada.",
+        "Parte 4: A Visita ao Planeta da Solidão: O Pequeno Príncipe Preto decide visitar um planeta que é conhecido por sua solidão. Ao chegar, ele encontra criaturas que vivem em isolamento, cada uma lidando com sua própria tristeza. Ele tenta se conectar com eles, mas percebe que a solidão é uma barreira difícil de transpor. Os habitantes parecem perdidos em seus próprios mundos.",
+        "Parte 5: O Encontro com o Comerciante: Em sua jornada, o Pequeno Príncipe Preto encontra um comerciante que está obcecado por dinheiro e bens materiais. O comerciante se dedica a acumular riquezas, acreditando que isso lhe trará felicidade. O príncipe, perplexo, tenta entender essa mentalidade e questiona o valor das posses em relação às relações humanas.",
+        "Parte 6: O Retorno ao Lar: Após suas muitas aventuras, o Pequeno Príncipe Preto sente que é hora de voltar para casa. Ele reflete sobre as lições que aprendeu e as amizades que fez. A jornada o transformou, e ele agora carrega em seu coração a sabedoria sobre o amor, a amizade e a importância de estar presente para os outros.",
+        "---- A verdadeira essência das coisas se vê com o coração. ---- -- O essencial é invisível aos olhos. ---- Cada um é único. ---- Todas as citações foram falados pelo Pequeno Pŕincipe Preto.",
     ];
 
     document.addEventListener("mousemove", function (event) {
@@ -95,7 +95,7 @@ window.onload = function () {
             modal.classList.add("show"); // Adiciona a classe para mostrar
             mainContent.classList.add("blur-background"); // Adiciona o blur
 
-            
+
         });
     });
 
