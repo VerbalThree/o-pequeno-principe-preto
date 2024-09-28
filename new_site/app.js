@@ -1,6 +1,12 @@
 window.onload = function () {
+
     const gallery = document.querySelector(".gallery");
     const previewImage = document.querySelector(".preview-img img");
+    const modal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalDescription = document.getElementById("imageDescription");
+    const closeModal = document.querySelector(".close");
+    const mainContent = document.querySelector(".main-content");
 
     document.addEventListener("mousemove", function (event) {
         const x = event.clientX;
@@ -24,7 +30,7 @@ window.onload = function () {
         });
     });
 
-    for(let i = 0; i < 150; i++){ // 
+    for(let i = 0; i < 7; i++){ // 
         const item = document.createElement("div");
         item.className = "item";
         const img = document.createElement("img");
@@ -39,9 +45,9 @@ window.onload = function () {
 
     items.forEach((item, index) => {
         gsap.set(item, {
-            rotationY: 90,
-            rotationZ: index * angleIncrement - 90,
-            transformOrigin: "50% 400px",
+            rotationY: 90, // 90
+            rotationZ: index * angleIncrement - 90, // 90
+            transformOrigin: "50% 400px", /// 50% 400px
         });
 
         item.addEventListener("mouseover", function () {
@@ -69,7 +75,32 @@ window.onload = function () {
                 durtion: 0.5, //
             });
         });
+
+        // Evento de clique para abrir o modal
+        item.addEventListener("click", function () {
+        
+            const imgInsideItem = item.querySelector("img");
+            modalImage.src = imgInsideItem.src;
+            modalDescription.textContent = `Descrição da Imagem ${(index + 1)}`; // Alterar para a descrição desejada
+            modal.style.display = "flex";
+            mainContent.classList.add("blur-background"); // Adiciona o blur
+        });
     });
+
+    // Evento para fechar o modal
+    closeModal.addEventListener("click", function() {
+        modal.style.display = "none";
+        mainContent.classList.remove("blur-background"); // Remove o blur
+    });
+
+    // Fecha o modal ao clicar fora do conteúdo
+    window.addEventListener("click", function(event) {
+        if(event.target == modal){
+            modal.style.display = "none";
+            mainContent.classList.remove("blur-background"); // Remove o blur
+        }
+    });
+
 
     ScrollTrigger.create({
 
@@ -130,3 +161,5 @@ function animate() {
 }
 
 animate();
+
+// Pop-up
