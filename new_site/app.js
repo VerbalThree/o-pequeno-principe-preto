@@ -97,3 +97,15 @@ window.onload = function () {
 };
 
 function setupRotation() {}
+
+// Bolinha
+const follower = document.querySelector('.follower');
+
+document.addEventListener('mousemove', (event) => {
+    const x = event.clientX;
+    const y = event.clientY;
+
+    follower.style.left = `${x}px`;
+    follower.style.top = `${y}px`;
+});
+
