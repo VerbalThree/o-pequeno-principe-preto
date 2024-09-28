@@ -101,11 +101,32 @@ function setupRotation() {}
 // Bolinha
 const follower = document.querySelector('.follower');
 
-document.addEventListener('mousemove', (event) => {
-    const x = event.clientX;
-    const y = event.clientY;
+let targetX = 0;
+let targetY = 0;
 
-    follower.style.left = `${x}px`;
-    follower.style.top = `${y}px`;
+document.addEventListener('mousemove', (event) => {
+
+    targetX = event.clientX;
+    targetY = event.clientY;
 });
 
+function animate() {
+    
+    const followerRect = follower.getBoundingClientRect();
+    const x = followerRect.left + followerRect.width / 2;
+    const y = followerRect.top + followerRect.height / 2;
+
+    const dx = targetX - x;
+    const dy = targetY - y;
+
+    const smoothFactor = 0.100; // Quanto mais baixo, mais suave
+    const newX = x + dx * smoothFactor;
+    const newY = y + dy * smoothFactor;
+
+    follower.style.left = `${newX}px`;
+    follower.style.top = `${newY}px`;
+
+    requestAnimationFrame(animate);
+}
+
+animate();
