@@ -7,6 +7,7 @@ window.onload = function () {
     const modalDescription = document.getElementById("imageDescription");
     const closeModal = document.querySelector(".close");
     const mainContent = document.querySelector(".main-content");
+    let hidePreviewTimeout;
 
     const imageDescriptions = [
         "Parte 1: A Chegada do Pequeno Príncipe Preto: O Pequeno Príncipe Preto chega à Terra de um asteroide distante, onde vive em harmonia com a natureza. Ao pousar, ele é imediatamente atraído pela beleza do planeta e pelas cores vibrantes ao seu redor. A curiosidade o impulsiona a explorar este novo mundo, onde encontra formas de vida diferentes das que conhecia.",
@@ -57,7 +58,7 @@ window.onload = function () {
         gsap.set(item, {
             rotationY: 90, // 90
             rotationZ: index * angleIncrement - 90, // 90
-            transformOrigin: "50% 400px", /// 50% 400px
+            transformOrigin: "50% 400px", // 50% 400px
         });
 
         item.addEventListener("mouseover", function () {
@@ -72,10 +73,29 @@ window.onload = function () {
                 durtion: 0.5, //
             });
 
+            // Cancelar o temporazador se houver interação novamente
+            clearTimeout(hidePreviewTimeout);
+
+            // Mostrar a imagem suavemente
+            gsap.to(previewImage, {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+
         });
 
         item.addEventListener("mouseout", function () {
             previewImage.src = "./assets/img1.png";
+
+            // Iniciar o temporizador para esconder a imagem após 10 segundos
+            hidePreviewTimeout = setTimeout(() => {
+                gsap.to(previewImage, {
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            }, 250);
 
             gsap.to(item, {
                 x: 0,
@@ -88,7 +108,9 @@ window.onload = function () {
 
         // Evento de clique para abrir o modal
         item.addEventListener("click", function () {
-        
+            
+            clearTimeout(hidePreviewTimeout); // Cancelar o temporizador ao abrir o modal
+
             const imgInsideItem = item.querySelector("img");
             modalImage.src = imgInsideItem.src;
             modalDescription.textContent = imageDescriptions[index]; // Descrição de cada imagem
@@ -104,9 +126,13 @@ window.onload = function () {
         modal.classList.remove("show"); // Remove a classe para ocultar
         mainContent.classList.remove("blur-background"); // Remove o blur
 
-        setTimeout(() => {
-            modal.style.display = 'none';
-        },300);  
+        hidePreviewTimeout = setTimeout(() => {
+            gsap.to(previewImage, {
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+        }, 250);
 
     });
 
@@ -116,7 +142,14 @@ window.onload = function () {
             modal.classList.remove("show"); // Remove a classe para ocultar
             mainContent.classList.remove("blur-background"); // Remove o blur
 
-        
+            hidePreviewTimeout = setTimeout(() => {
+                gsap.to(previewImage, {
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            }, 250);
+
         }
     });
 
