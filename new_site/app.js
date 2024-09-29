@@ -45,7 +45,7 @@ window.onload = function () {
         const item = document.createElement("div");
         item.className = "item";
         const img = document.createElement("img");
-        img.src = "./assets/img" + ((i % 15) + 1) + ".jpg"; 
+        img.src = "new_site/assets/img" + ((i % 15) + 1) + ".jpg"; 
         item.appendChild(img);
         gallery.appendChild(item);
     }
